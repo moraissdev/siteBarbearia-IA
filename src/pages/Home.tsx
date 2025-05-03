@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -22,6 +21,7 @@ const Home = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
+                asChild
                 className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 btn-hover"
               >
                 <Link to="/agendar">Agendar Horário</Link>
@@ -29,7 +29,8 @@ const Home = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-barber-gold text-barber-gold hover:bg-barber-gold/10 btn-hover"
+                asChild
+                className="border-barber-gold text-barber-gold hover:bg-barber-gold/90 hover:text-barber-black btn-hover"
               >
                 <Link to="/servicos">Ver Serviços</Link>
               </Button>
@@ -65,7 +66,7 @@ const Home = () => {
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">{service.name}</h3>
-                  <p className="text-barber-gold font-bold mb-3">R$ {service.price.toFixed(2)}</p>
+                  <p className="text-barber-gold font-bold mb-3">R$ {service.price.toFixed(2).replace('.', ',')}</p>
                   <p className="text-gray-600 mb-4">{service.description}</p>
                   <div className="flex items-center text-sm text-gray-500">
                     <Clock size={16} className="mr-2" />
@@ -80,6 +81,7 @@ const Home = () => {
             <Button 
               variant="default" 
               size="lg"
+              asChild
               className="bg-barber-black hover:bg-barber-black/90 btn-hover"
             >
               <Link to="/servicos">Ver Todos os Serviços</Link>
@@ -128,6 +130,7 @@ const Home = () => {
             <Button 
               variant="outline" 
               size="lg"
+              asChild
               className="border-barber-gold text-barber-black hover:bg-barber-gold/10 btn-hover"
             >
               <Link to="/barbeiros">Conhecer Todos os Barbeiros</Link>
@@ -181,11 +184,13 @@ const Home = () => {
           
           <div className="text-center mt-10">
             <Button 
-              variant="outline" 
-              size="lg"
-              className="border-barber-gold text-barber-gold hover:bg-barber-gold/10 btn-hover"
+              asChild
+              variant="outline"
+              className="border-barber-gold text-barber-gold hover:bg-barber-gold hover:text-barber-black btn-hover"
             >
-              <Link to="/depoimentos">Ver Todos os Depoimentos</Link>
+              <Link to="/depoimentos">
+                Ver todos os Depoimentos
+              </Link>
             </Button>
           </div>
         </div>
@@ -201,6 +206,7 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
+              asChild
               className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 btn-hover"
             >
               <Link to="/agendar">
@@ -209,9 +215,9 @@ const Home = () => {
               </Link>
             </Button>
             <Button 
-              variant="outline" 
               size="lg" 
-              className="border-white text-white hover:bg-white/10 btn-hover"
+              asChild
+              className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 btn-hover"
             >
               <Link to="/contato">
                 <MessageSquare className="mr-2 h-4 w-4" />

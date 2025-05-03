@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -43,39 +42,40 @@ const Services = () => {
 
       {/* Services List */}
       <section className="py-8 pb-16 container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {filteredServices.map((service) => (
             <div 
               key={service.id} 
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
             >
-              <div className="h-48 bg-gray-200">
+              <div className="h-48 sm:h-56 bg-gray-200">
                 <img 
                   src={service.image} 
                   alt={service.name}
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-bold">{service.name}</h3>
-                  <span className="bg-barber-gold text-barber-black py-1 px-3 rounded-full text-sm font-medium">
-                    R$ {service.price.toFixed(2)}
+              <div className="p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-0 mb-3">
+                  <h3 className="text-lg sm:text-xl font-bold">{service.name}</h3>
+                  <span className="bg-barber-gold text-barber-black py-1 px-3 rounded-full text-sm font-medium w-fit">
+                    R$ {service.price.toFixed(2).replace('.', ',')}
                   </span>
                 </div>
-                <p className="text-gray-600 mb-4">{service.description}</p>
+                <p className="text-gray-600 mb-4 text-sm sm:text-base">{service.description}</p>
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center text-sm text-gray-500">
-                    <Clock size={16} className="mr-2" />
+                  <div className="flex items-center text-xs sm:text-sm text-gray-500">
+                    <Clock size={14} className="mr-1 sm:mr-2" />
                     <span>{service.duration} minutos</span>
                   </div>
                   <Button 
                     variant="outline" 
                     size="sm"
-                    className="border-barber-gold text-barber-gold hover:bg-barber-gold/10"
+                    asChild
+                    className="border-barber-gold text-barber-gold hover:bg-barber-gold/10 btn-hover text-xs sm:text-sm min-h-[32px] px-3 py-1 max-w-[120px]"
                   >
                     <Link to={`/agendar?servico=${service.id}`}>
-                      <Scissors size={14} className="mr-1" />
+                      <Scissors size={12} className="mr-1" />
                       Agendar
                     </Link>
                   </Button>
@@ -92,12 +92,14 @@ const Services = () => {
           </div>
         )}
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-10">
           <Button 
-            size="lg" 
-            className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 btn-hover"
+            asChild
+            className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg btn-hover min-h-[44px] max-w-[200px]"
           >
-            <Link to="/agendar">Agendar Horário</Link>
+            <Link to="/agendar">
+              Agendar Horário
+            </Link>
           </Button>
         </div>
       </section>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -120,7 +119,7 @@ const About = () => {
             <Card key={service.id} className="border border-gray-200 hover:shadow-lg transition-shadow">
               <CardHeader className="pb-2">
                 <h3 className="text-xl font-bold">{service.name}</h3>
-                <p className="text-barber-gold font-semibold">R$ {service.price.toFixed(2)}</p>
+                <p className="text-barber-gold font-semibold">R$ {service.price.toFixed(2).replace('.', ',')}</p>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700">{service.description}</p>
@@ -131,7 +130,10 @@ const About = () => {
         </div>
         
         <div className="text-center mt-8">
-          <Button className="bg-barber-gold text-barber-black hover:bg-barber-gold/90">
+          <Button 
+            asChild
+            className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 btn-hover"
+          >
             <Link to="/servicos">Ver Todos os Serviços</Link>
           </Button>
         </div>

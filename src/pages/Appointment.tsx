@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -14,6 +13,7 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Calendar, Clock, User, Scissors, Check } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
+import { Link } from 'react-router-dom';
 
 const AppointmentPage = () => {
   const [searchParams] = useSearchParams();
@@ -77,13 +77,11 @@ const AppointmentPage = () => {
     }
 
     setStep(step + 1);
-    window.scrollTo(0, 0);
   };
   
   // Go back to the previous step
   const prevStep = () => {
     setStep(step - 1);
-    window.scrollTo(0, 0);
   };
   
   // Submit the form
@@ -122,13 +120,12 @@ const AppointmentPage = () => {
     
     // Move to the confirmation step
     setStep(5);
-    window.scrollTo(0, 0);
   };
   
   return (
-    <div className="bg-barber-light">
+    <div className="bg-barber-light min-h-screen overflow-x-hidden">
       {/* Header */}
-      <div className="bg-barber-black text-white py-16">
+      <div className="bg-barber-black text-white py-16 w-full">
         <div className="container mx-auto text-center px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-barber-gold">Agendar Horário</h1>
           <p className="text-lg max-w-2xl mx-auto">
@@ -138,19 +135,26 @@ const AppointmentPage = () => {
       </div>
 
       {/* Steps Indicator */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex justify-between items-center max-w-3xl mx-auto mb-8">
+      <div className="container mx-auto px-4 py-8 w-full">
+        <div className="flex justify-between items-center max-w-3xl mx-auto mb-8 relative">
+          {/* Linha de conexão principal */}
+          <div 
+            className={`h-0.5 w-full ${
+              step > 1 ? 'bg-barber-gold/20' : 'bg-gray-200'
+            } absolute top-5 left-0 transform hidden sm:block`} 
+          />
+          
           {[1, 2, 3, 4].map((stepNum) => (
             <div 
               key={stepNum} 
-              className="flex flex-col items-center w-full"
+              className="flex flex-col items-center w-full relative z-10"
             >
               <div 
                 className={`w-10 h-10 rounded-full ${
                   stepNum === step ? 'bg-barber-gold text-barber-black' : 
                   stepNum < step ? 'bg-barber-gold/20 text-barber-black' : 
                   'bg-gray-200 text-gray-500'
-                } flex items-center justify-center font-medium relative z-10`}
+                } flex items-center justify-center font-medium`}
               >
                 {stepNum < step ? <Check size={16} /> : stepNum}
               </div>
@@ -159,19 +163,14 @@ const AppointmentPage = () => {
                  stepNum === 2 ? 'Serviço' : 
                  stepNum === 3 ? 'Data/Hora' : 'Informações'}
               </span>
-              {stepNum < 4 && (
-                <div className={`h-0.5 w-full ${
-                  stepNum < step ? 'bg-barber-gold/20' : 'bg-gray-200'
-                } absolute top-5 left-1/2 transform -translate-y-1/2 hidden sm:block`} />
-              )}
             </div>
           ))}
         </div>
       </div>
       
       {/* Step Content */}
-      <div className="container mx-auto px-4 pb-16">
-        <div className="max-w-4xl mx-auto">
+      <div className="container mx-auto px-4 pb-16 w-full">
+        <div className="max-w-4xl mx-auto w-full">
           {/* Step 1: Select Barber */}
           {step === 1 && (
             <div className="animate-fade-in">
@@ -180,7 +179,7 @@ const AppointmentPage = () => {
                 Escolha seu Barbeiro
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {barbers.map((barber) => (
                   <div 
                     key={barber.id}
@@ -195,7 +194,7 @@ const AppointmentPage = () => {
                     <Card className="h-full">
                       <CardContent className="p-0">
                         <div className="flex flex-col sm:flex-row h-full">
-                          <div className="w-full sm:w-1/3 h-40 sm:h-auto bg-gray-200">
+                          <div className="w-full sm:w-1/3 h-48 sm:h-auto bg-gray-200">
                             <img 
                               src={barber.image} 
                               alt={barber.name}
@@ -243,7 +242,7 @@ const AppointmentPage = () => {
                 <Button 
                   onClick={nextStep}
                   disabled={!selectedBarberId}
-                  className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 w-full max-w-xs"
+                  className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 btn-hover max-w-[200px]"
                 >
                   Continuar
                 </Button>
@@ -283,7 +282,7 @@ const AppointmentPage = () => {
                         </div>
                         <div className="flex justify-between items-center mb-2">
                           <span className="text-barber-gold font-medium">
-                            R$ {service.price.toFixed(2)}
+                            R$ {service.price.toFixed(2).replace('.', ',')}
                           </span>
                           <span className="text-gray-500 text-sm flex items-center">
                             <Clock size={14} className="mr-1" />
@@ -301,14 +300,14 @@ const AppointmentPage = () => {
                 <Button
                   variant="outline"
                   onClick={prevStep}
-                  className="border-barber-black text-barber-black hover:bg-barber-black/10 w-32"
+                  className="border-barber-black text-barber-black hover:bg-barber-black/10 btn-hover min-w-[120px]"
                 >
                   Voltar
                 </Button>
                 <Button 
                   onClick={nextStep}
                   disabled={!selectedServiceId}
-                  className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 w-32"
+                  className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 btn-hover min-w-[120px]"
                 >
                   Continuar
                 </Button>
@@ -375,14 +374,14 @@ const AppointmentPage = () => {
                 <Button
                   variant="outline"
                   onClick={prevStep}
-                  className="border-barber-black text-barber-black hover:bg-barber-black/10 w-32"
+                  className="border-barber-black text-barber-black hover:bg-barber-black/10 btn-hover min-w-[120px]"
                 >
                   Voltar
                 </Button>
                 <Button 
                   onClick={nextStep}
                   disabled={!selectedTimeId}
-                  className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 w-32"
+                  className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 btn-hover min-w-[120px]"
                 >
                   Continuar
                 </Button>
@@ -475,7 +474,7 @@ const AppointmentPage = () => {
                     <div className="flex justify-between pt-3 border-t">
                       <span className="text-gray-600">Valor:</span>
                       <span className="font-bold text-barber-gold">
-                        R$ {selectedService?.price.toFixed(2)}
+                        R$ {selectedService?.price.toFixed(2).replace('.', ',')}
                       </span>
                     </div>
                   </div>
@@ -486,13 +485,13 @@ const AppointmentPage = () => {
                     type="button"
                     variant="outline"
                     onClick={prevStep}
-                    className="border-barber-black text-barber-black hover:bg-barber-black/10 w-32"
+                    className="border-barber-black text-barber-black hover:bg-barber-black/10 btn-hover min-w-[120px]"
                   >
                     Voltar
                   </Button>
                   <Button 
                     type="submit"
-                    className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 w-32"
+                    className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 btn-hover min-w-[120px]"
                   >
                     Confirmar
                   </Button>
@@ -537,7 +536,7 @@ const AppointmentPage = () => {
                   <div className="flex justify-between pt-3 border-t">
                     <span className="text-gray-600">Valor:</span>
                     <span className="font-bold text-barber-gold">
-                      R$ {selectedService?.price.toFixed(2)}
+                      R$ {selectedService?.price.toFixed(2).replace('.', ',')}
                     </span>
                   </div>
                 </div>
@@ -545,10 +544,11 @@ const AppointmentPage = () => {
               
               <div className="text-center">
                 <Button 
-                  onClick={() => window.location.href = '/'}
-                  className="bg-barber-gold text-barber-black hover:bg-barber-gold/90"
+                  size="lg" 
+                  asChild
+                  className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 btn-hover min-h-[44px] px-6 py-2"
                 >
-                  Voltar para o Início
+                  <Link to="/">Voltar para o Início</Link>
                 </Button>
               </div>
             </div>

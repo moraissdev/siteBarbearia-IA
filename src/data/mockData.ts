@@ -1,4 +1,3 @@
-
 export interface Barber {
   id: number;
   name: string;
@@ -42,7 +41,7 @@ export const barbers: Barber[] = [
   {
     id: 1,
     name: "Rafael Silva",
-    image: "/placeholder.svg",
+    image: "/images/barber1.jpg",
     role: "Mestre Barbeiro",
     experience: "10 anos",
     bio: "Especialista em cortes clássicos e modernos, com técnicas precisas aperfeiçoadas através de uma década de experiência.",
@@ -55,7 +54,7 @@ export const barbers: Barber[] = [
   {
     id: 2,
     name: "André Costa",
-    image: "/placeholder.svg",
+    image: "/images/barber2.jpg",
     role: "Barbeiro Senior",
     experience: "7 anos",
     bio: "Mestre em estilos contemporâneos, André traz tendências internacionais adaptadas ao estilo brasileiro.",
@@ -67,7 +66,7 @@ export const barbers: Barber[] = [
   {
     id: 3,
     name: "Lucas Mendes",
-    image: "/placeholder.svg",
+    image: "/images/barber3.jpg",
     role: "Barbeiro Estilista",
     experience: "5 anos",
     bio: "Com formação internacional, Lucas é especialista em transformações radicais que valorizam o estilo pessoal.",
@@ -80,7 +79,7 @@ export const barbers: Barber[] = [
   {
     id: 4,
     name: "Marcelo Rocha",
-    image: "/placeholder.svg",
+    image: "/images/barber4.jpg",
     role: "Barbeiro Especialista",
     experience: "8 anos",
     bio: "Marcelo combina técnicas tradicionais com tendências atuais, criando estilos únicos para cada cliente.",
@@ -99,7 +98,7 @@ export const services: Service[] = [
     price: 35,
     duration: 30,
     description: "Corte tradicional com tesoura e máquina, finalizado com produtos de alta qualidade.",
-    image: "/placeholder.svg"
+    image: "/images/service1.jpg"
   },
   {
     id: 2,
@@ -107,7 +106,7 @@ export const services: Service[] = [
     price: 45,
     duration: 40,
     description: "Técnica de transição suave entre diferentes comprimentos, criando um efeito gradual.",
-    image: "/placeholder.svg"
+    image: "/images/service2.jpg"
   },
   {
     id: 3,
@@ -115,7 +114,7 @@ export const services: Service[] = [
     price: 30,
     duration: 25,
     description: "Modelagem e aparo da barba, com toalha quente, óleos essenciais e finalização.",
-    image: "/placeholder.svg"
+    image: "/images/service3.jpg"
   },
   {
     id: 4,
@@ -123,7 +122,7 @@ export const services: Service[] = [
     price: 70,
     duration: 60,
     description: "Inclui corte de cabelo, serviço de barba completo e tratamento facial.",
-    image: "/placeholder.svg"
+    image: "/images/service4.jpg"
   },
   {
     id: 5,
@@ -131,7 +130,7 @@ export const services: Service[] = [
     price: 50,
     duration: 45,
     description: "Hidratação profunda ou reconstrução para cabelos danificados.",
-    image: "/placeholder.svg"
+    image: "/images/service5.jpg"
   },
   {
     id: 6,
@@ -139,7 +138,7 @@ export const services: Service[] = [
     price: 20,
     duration: 15,
     description: "Modelagem de sobrancelhas masculinas com técnicas precisas.",
-    image: "/placeholder.svg"
+    image: "/images/service6.jpg"
   }
 ];
 
@@ -147,7 +146,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 1,
     name: "Carlos Eduardo",
-    photo: "/placeholder.svg",
+    photo: "/images/client1.jpg",
     rating: 5,
     comment: "Melhor barbearia que já frequentei! O Rafael tem mãos de artista, e o ambiente é muito aconchegante.",
     service: "Corte Degradê",
@@ -156,7 +155,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 2,
     name: "Fernando Almeida",
-    photo: "/placeholder.svg",
+    photo: "/images/client2.jpg",
     rating: 5,
     comment: "Atendimento nota 10 e resultado excepcional. Recomendo o tratamento de barba com o André.",
     service: "Barba Completa",
@@ -165,7 +164,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 3,
     name: "Roberto Gomes",
-    photo: "/placeholder.svg",
+    photo: "/images/client3.jpg",
     rating: 4,
     comment: "Gostei muito do resultado e do ambiente. A experiência com toalha quente na barba é sensacional.",
     service: "Pacote Completo",
@@ -174,7 +173,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 4,
     name: "Paulo Henrique",
-    photo: "/placeholder.svg",
+    photo: "/images/client4.jpg",
     rating: 5,
     comment: "Desde que comecei a frequentar esta barbearia, não quis mais saber de outra. Atendimento personalizado e resultados impressionantes.",
     service: "Corte Clássico",

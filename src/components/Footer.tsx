@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Twitter, MapPin, Phone, Mail } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Footer = () => {
   return (
@@ -54,9 +54,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/agendar" className="text-gray-300 hover:text-barber-gold transition-colors">
-                  Agendar Horário
-                </Link>
+                <Button asChild className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 btn-hover">
+                  <Link to="/agendar">Agendar</Link>
+                </Button>
               </li>
             </ul>
           </div>

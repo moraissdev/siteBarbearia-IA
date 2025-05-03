@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -33,10 +32,10 @@ const Navbar = () => {
 
         {/* Mobile menu button */}
         <button 
-          className="md:hidden text-white focus:outline-none"
+          className="md:hidden bg-barber-gold text-barber-black hover:bg-barber-gold/90 max-w-[200px] px-4 py-2 rounded-md text-sm"
           onClick={toggleMenu}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          Menu
         </button>
 
         {/* Desktop Navigation */}
@@ -56,7 +55,10 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <Button className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 btn-hover">
+          <Button 
+            asChild
+            className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 btn-hover"
+          >
             <Link to="/agendar">Agendar</Link>
           </Button>
         </div>
@@ -74,7 +76,10 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Button className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 w-full">
+            <Button 
+              asChild
+              className="bg-barber-gold text-barber-black hover:bg-barber-gold/90 w-full"
+            >
               <Link to="/agendar" onClick={() => setIsMenuOpen(false)}>
                 Agendar
               </Link>
